@@ -33,6 +33,9 @@
             this.serialInput = new System.Windows.Forms.TextBox();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.sendButton = new System.Windows.Forms.Button();
+            this.COMList = new System.Windows.Forms.ComboBox();
+            this.connectionIndicator = new System.Windows.Forms.Label();
+            this.connectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // serialOutput
@@ -43,39 +46,77 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.serialOutput.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.serialOutput.Location = new System.Drawing.Point(12, 12);
+            this.serialOutput.MaxLength = 999999999;
             this.serialOutput.Multiline = true;
             this.serialOutput.Name = "serialOutput";
             this.serialOutput.ReadOnly = true;
-            this.serialOutput.Size = new System.Drawing.Size(581, 338);
+            this.serialOutput.Size = new System.Drawing.Size(581, 335);
             this.serialOutput.TabIndex = 0;
             // 
             // serialInput
             // 
             this.serialInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.serialInput.Location = new System.Drawing.Point(12, 356);
+            this.serialInput.Location = new System.Drawing.Point(12, 353);
             this.serialInput.Name = "serialInput";
             this.serialInput.Size = new System.Drawing.Size(515, 26);
             this.serialInput.TabIndex = 1;
             this.serialInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.serialInput_KeyDown);
             // 
+            // serialPort
+            // 
+            this.serialPort.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort_ErrorReceived);
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort_DataReceived);
+            // 
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(533, 356);
+            this.sendButton.Location = new System.Drawing.Point(533, 352);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(60, 26);
+            this.sendButton.Size = new System.Drawing.Size(60, 35);
             this.sendButton.TabIndex = 2;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
+            // COMList
+            // 
+            this.COMList.FormattingEnabled = true;
+            this.COMList.Location = new System.Drawing.Point(12, 385);
+            this.COMList.Name = "COMList";
+            this.COMList.Size = new System.Drawing.Size(121, 28);
+            this.COMList.TabIndex = 3;
+            this.COMList.DropDown += new System.EventHandler(this.COMList_DropDown);
+            this.COMList.TextChanged += new System.EventHandler(this.COMList_TextChanged);
+            // 
+            // connectionIndicator
+            // 
+            this.connectionIndicator.AutoSize = true;
+            this.connectionIndicator.Location = new System.Drawing.Point(282, 393);
+            this.connectionIndicator.Name = "connectionIndicator";
+            this.connectionIndicator.Size = new System.Drawing.Size(78, 20);
+            this.connectionIndicator.TabIndex = 5;
+            this.connectionIndicator.Text = "Loading...";
+            // 
+            // connectButton
+            // 
+            this.connectButton.Location = new System.Drawing.Point(139, 385);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(90, 30);
+            this.connectButton.TabIndex = 6;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 410);
+            this.ClientSize = new System.Drawing.Size(605, 436);
+            this.Controls.Add(this.connectButton);
+            this.Controls.Add(this.connectionIndicator);
+            this.Controls.Add(this.COMList);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.serialInput);
             this.Controls.Add(this.serialOutput);
@@ -94,6 +135,9 @@
         private System.Windows.Forms.TextBox serialInput;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Button sendButton;
+        private System.Windows.Forms.ComboBox COMList;
+        private System.Windows.Forms.Label connectionIndicator;
+        private System.Windows.Forms.Button connectButton;
     }
 }
 
