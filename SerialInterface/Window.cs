@@ -57,7 +57,7 @@ namespace SerialInterface
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             /* append the incoming line as a new line in the output box.
-               for some reason, this void cannot access the form controls ¯\_(ツ)_/¯ */
+               for some reason, this void cannot directly access the form controls because it is apparently a thread... ¯\_(ツ)_/¯ */
             this.InvokeEx(f => serialOutput.Text = serialOutput.Text + serialPort.ReadLine());
         }
         private void serialPort_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
