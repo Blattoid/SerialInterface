@@ -35,6 +35,7 @@
             this.COMList = new System.Windows.Forms.ComboBox();
             this.connectButton = new System.Windows.Forms.Button();
             this.serialOutput = new System.Windows.Forms.RichTextBox();
+            this.COMBaud = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // serialInput
@@ -76,7 +77,7 @@
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(139, 385);
+            this.connectButton.Location = new System.Drawing.Point(266, 385);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(90, 30);
             this.connectButton.TabIndex = 6;
@@ -97,11 +98,23 @@
             this.serialOutput.Text = "";
             this.serialOutput.TextChanged += new System.EventHandler(this.serialOutput_TextChanged);
             // 
+            // COMBaud
+            // 
+            this.COMBaud.FormattingEnabled = true;
+            this.COMBaud.Location = new System.Drawing.Point(139, 387);
+            this.COMBaud.Name = "COMBaud";
+            this.COMBaud.Size = new System.Drawing.Size(121, 28);
+            this.COMBaud.TabIndex = 8;
+            this.COMBaud.Text = "9600";
+            this.COMBaud.DropDown += new System.EventHandler(this.COMBaud_DropDown);
+            this.COMBaud.TextChanged += new System.EventHandler(this.COMBaud_TextChanged);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 436);
+            this.Controls.Add(this.COMBaud);
             this.Controls.Add(this.serialOutput);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.COMList);
@@ -123,6 +136,7 @@
         private System.Windows.Forms.ComboBox COMList;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.RichTextBox serialOutput;
+        private System.Windows.Forms.ComboBox COMBaud;
     }
 }
 

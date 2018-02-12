@@ -9,7 +9,11 @@ namespace SerialInterface
 {
     public partial class Window : Form
     {
+        //Program name
         public static string appName = "Serial Interface";
+        //list of baud rates as an array
+        public static int[] bauds = { 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 74880, 115200, 230400, 250000, 500000, 1000000, 2000000 }; 
+
         public Window()
         {
             //runs on startup
@@ -82,6 +86,22 @@ namespace SerialInterface
             foreach (string port in comPorts)
             {
                 COMList.Items.Add(port); //add the port to the list
+            }
+        }
+
+        private void COMBaud_TextChanged(object sender, EventArgs e)
+        {
+            //switch to the new baud rate
+            serialPort.BaudRate = Convert.ToInt32(COMBaud.Text);
+        }
+        private void COMBaud_DropDown(object sender, EventArgs e)
+        {
+            //clear the list of ports
+            COMBaud.Items.Clear();
+            //for every baud, add it to the list of options.
+            foreach (int baud in bauds)
+            {
+                COMBaud.Items.Add(baud); //add the baud to the list
             }
         }
 
