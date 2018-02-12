@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 #pragma warning disable IDE1006 // Disable pesky naming style warnings (not required)
 
@@ -14,37 +9,11 @@ namespace SerialInterface
 {
     public partial class Window : Form
     {
+        public static string appName = "Serial Interface";
         public Window()
         {
             //runs on startup
             InitializeComponent();
-
-            //spawn thread for checking if we are connected to the port constantly
-            Thread chkConnectivity = new Thread(checkConnectivity);
-            chkConnectivity.Start();
-        }
-
-        public void updateConnectivityIndicator(string message, Color colour)
-        {
-            //the simplest method, in my knowledge, for updating form controls inside a thread
-
-                connectionIndicator.ForeColor = colour;
-                connectionIndicator.Text = message;
-
-        }
-
-        void checkConnectivity()
-        {
-            //10 times a second, check if the port is connected.
-            Thread.Sleep(100);
-            if (serialPort.IsOpen)
-            {
-                updateConnectivityIndicator("Status: Connected",Color.Green);
-            }
-            else
-            {
-                updateConnectivityIndicator("Status: Disconnected",Color.Red);
-            }
         }
 
         private void Window_FormClosed(object sender, FormClosedEventArgs e)
@@ -65,12 +34,10 @@ namespace SerialInterface
                 sendData(serialInput.Text);
             }
         }
-
         private void sendButton_Click(object sender, EventArgs e)
         {
             sendData(serialInput.Text); //when the send button is pressed, send whatever is in the input box.
         }
-
         void sendData(string data)
         {
             //send the string to the serial port if connected.
@@ -89,9 +56,10 @@ namespace SerialInterface
 
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            serialOutput.Text = serialOutput.Text + Environment.NewLine + serialPort.ReadLine(); //append the incoming line as a new line in the output box.
+            /* append the incoming line as a new line in the output box.
+               for some reason, this void cannot access the form controls ¯\_(ツ)_/¯ */
+            this.InvokeEx(f => serialOutput.Text = serialOutput.Text + serialPort.ReadLine());
         }
-
         private void serialPort_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
         {
             MessageBox.Show(e.ToString()); //display whatever error is spat out.
@@ -104,7 +72,6 @@ namespace SerialInterface
             //switch to the new port
             serialPort.PortName = COMList.Text;
         }
-
         private void COMList_DropDown(object sender, EventArgs e)
         {
             //clear the list of ports
@@ -120,13 +87,39 @@ namespace SerialInterface
 
         private void connectButton_Click(object sender, EventArgs e)
         {
-            //update the indicator
-            updateConnectivityIndicator("Connecting...",Color.Yellow);
             //clear the output
             serialOutput.Text = "";
+
+            //set the title to include the COM port chosen
+            Text = appName + " - " + serialPort.PortName;
             //attempt to open the connection
             try { serialPort.Open(); }
-            catch (Exception err) { MessageBox.Show("Error opening connection: " + err.Message); }
+            catch (Exception err)
+            {
+                //show why we couldnt connect
+                MessageBox.Show("Error opening connection: " + err.Message);
+            }
+        }
+
+        private void serialOutput_TextChanged(object sender, EventArgs e)
+        {
+            //when new data is written, scroll to the bottom automagically.
+            serialOutput.SelectionStart = serialOutput.Text.Length;
+            serialOutput.ScrollToCaret();
+        }
+    }
+    public static class ISynchronizeInvokeExtensions
+    {
+        public static void InvokeEx<T>(this T @this, Action<T> action) where T : ISynchronizeInvoke
+        {
+            if (@this.InvokeRequired)
+            {
+                @this.Invoke(action, new object[] { @this });
+            }
+            else
+            {
+                action(@this);
+            }
         }
     }
 }
