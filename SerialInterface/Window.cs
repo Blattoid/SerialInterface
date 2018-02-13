@@ -11,9 +11,7 @@ namespace SerialInterface
     {
         //Program name
         public static string appName = "Serial Interface";
-        //list of baud rates as an array
-        public static int[] bauds = { 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 74880, 115200, 230400, 250000, 500000, 1000000, 2000000 }; 
-
+        public static int[] bauds = { 0, 1 };
         public Window()
         {
             //runs on startup
@@ -89,20 +87,10 @@ namespace SerialInterface
             }
         }
 
-        private void COMBaud_TextChanged(object sender, EventArgs e)
+        private void COMBaud_ValueChanged(object sender, EventArgs e)
         {
             //switch to the new baud rate
             serialPort.BaudRate = Convert.ToInt32(COMBaud.Text);
-        }
-        private void COMBaud_DropDown(object sender, EventArgs e)
-        {
-            //clear the list of ports
-            COMBaud.Items.Clear();
-            //for every baud, add it to the list of options.
-            foreach (int baud in bauds)
-            {
-                COMBaud.Items.Add(baud); //add the baud to the list
-            }
         }
 
         private void connectButton_Click(object sender, EventArgs e)

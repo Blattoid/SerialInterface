@@ -35,7 +35,8 @@
             this.COMList = new System.Windows.Forms.ComboBox();
             this.connectButton = new System.Windows.Forms.Button();
             this.serialOutput = new System.Windows.Forms.RichTextBox();
-            this.COMBaud = new System.Windows.Forms.ComboBox();
+            this.COMBaud = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.COMBaud)).BeginInit();
             this.SuspendLayout();
             // 
             // serialInput
@@ -57,7 +58,7 @@
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(533, 352);
+            this.sendButton.Location = new System.Drawing.Point(533, 350);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(60, 35);
             this.sendButton.TabIndex = 2;
@@ -77,9 +78,9 @@
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(266, 385);
+            this.connectButton.Location = new System.Drawing.Point(262, 386);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(90, 30);
+            this.connectButton.Size = new System.Drawing.Size(90, 33);
             this.connectButton.TabIndex = 6;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -100,14 +101,25 @@
             // 
             // COMBaud
             // 
-            this.COMBaud.FormattingEnabled = true;
-            this.COMBaud.Location = new System.Drawing.Point(139, 387);
+            this.COMBaud.Location = new System.Drawing.Point(139, 386);
+            this.COMBaud.Maximum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            0});
+            this.COMBaud.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.COMBaud.Name = "COMBaud";
-            this.COMBaud.Size = new System.Drawing.Size(121, 28);
+            this.COMBaud.Size = new System.Drawing.Size(120, 26);
             this.COMBaud.TabIndex = 8;
-            this.COMBaud.Text = "9600";
-            this.COMBaud.DropDown += new System.EventHandler(this.COMBaud_DropDown);
-            this.COMBaud.TextChanged += new System.EventHandler(this.COMBaud_TextChanged);
+            this.COMBaud.Value = new decimal(new int[] {
+            9600,
+            0,
+            0,
+            0});
             // 
             // Window
             // 
@@ -124,6 +136,7 @@
             this.Name = "Window";
             this.Text = "Serial Interface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Window_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.COMBaud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,7 +149,7 @@
         private System.Windows.Forms.ComboBox COMList;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.RichTextBox serialOutput;
-        private System.Windows.Forms.ComboBox COMBaud;
+        private System.Windows.Forms.NumericUpDown COMBaud;
     }
 }
 
