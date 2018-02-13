@@ -1,9 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
-#pragma warning disable IDE1006 // Disable pesky naming style warnings (not required)
 
 namespace SerialInterface
 {
@@ -11,7 +8,6 @@ namespace SerialInterface
     {
         //Program name
         public static string appName = "Serial Interface";
-        public static int[] bauds = { 0, 1 };
         public Window()
         {
             //runs on startup
