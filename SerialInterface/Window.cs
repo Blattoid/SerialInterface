@@ -52,17 +52,6 @@ namespace SerialInterface
             }
         }
 
-        private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            /* append the incoming line as a new line in the output box.
-               for some reason, this void cannot directly access the form controls because it is apparently a thread... ¯\_(ツ)_/¯ */
-            this.InvokeEx(f => serialOutput.Text = serialOutput.Text + serialPort.ReadLine());
-        }
-        private void serialPort_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
-        {
-            MessageBox.Show(e.ToString()); //display whatever error is spat out.
-        }
-
         private void COMList_TextChanged(object sender, EventArgs e)
         {
             //disconnect from the current port if connected.
@@ -89,6 +78,12 @@ namespace SerialInterface
             serialPort.BaudRate = Convert.ToInt32(COMBaud.Text);
         }
 
+        private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            /* append the incoming line as a new line in the output box.
+               for some reason, this void cannot directly access the form controls because it is apparently a thread... ¯\_(ツ)_/¯ */
+            this.InvokeEx(f => serialOutput.Text = serialOutput.Text + serialPort.ReadLine());
+        }
         private void connectButton_Click(object sender, EventArgs e)
         {
             //clear the output
