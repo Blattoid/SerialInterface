@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace SerialInterface
 {
-    public partial class Window : Form
+    public partial class MainWindow : Form
     {
         //Program name
         public static string appName = "Serial Interface";
-        public Window()
+        public MainWindow()
         {
             //runs on startup
             InitializeComponent();
@@ -105,6 +105,15 @@ namespace SerialInterface
             //when new data is written, scroll to the bottom automagically.
             serialOutput.SelectionStart = serialOutput.Text.Length;
             serialOutput.ScrollToCaret();
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            //create a new SettingsWindow object
+            SettingsWindow settingsDialog = new SettingsWindow();
+            // Show settingsDialog as a modal dialog
+            settingsDialog.ShowDialog(this);
+            MessageBox.Show("");
         }
     }
     public static class ISynchronizeInvokeExtensions

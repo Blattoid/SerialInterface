@@ -1,6 +1,6 @@
 ﻿namespace SerialInterface
 {
-    partial class Window
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,7 @@
             this.connectButton = new System.Windows.Forms.Button();
             this.serialOutput = new System.Windows.Forms.RichTextBox();
             this.COMBaud = new System.Windows.Forms.NumericUpDown();
+            this.settingsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.COMBaud)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,11 +121,22 @@
             0,
             0});
             // 
-            // Window
+            // settingsButton
+            // 
+            this.settingsButton.Location = new System.Drawing.Point(494, 391);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(99, 33);
+            this.settingsButton.TabIndex = 9;
+            this.settingsButton.Text = "Advanced";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 436);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.COMBaud);
             this.Controls.Add(this.serialOutput);
             this.Controls.Add(this.connectButton);
@@ -132,7 +144,7 @@
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.serialInput);
             this.MinimumSize = new System.Drawing.Size(370, 200);
-            this.Name = "Window";
+            this.Name = "MainWindow";
             this.Text = "Serial Interface";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Window_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.COMBaud)).EndInit();
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.RichTextBox serialOutput;
         private System.Windows.Forms.NumericUpDown COMBaud;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 
