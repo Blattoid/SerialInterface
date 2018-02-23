@@ -113,7 +113,24 @@ namespace SerialInterface
             SettingsWindow settingsDialog = new SettingsWindow();
             // Show settingsDialog as a modal dialog
             settingsDialog.ShowDialog(this);
-            MessageBox.Show("");
+
+            //apply the settings to the serial port
+            //stopbit objects are not strings, so we have to handle this.
+            if (Properties.Settings.Default.StopBits == 0) { serialPort.StopBits = System.IO.Ports.StopBits.None; }
+            else if (Properties.Settings.Default.StopBits == 1) { serialPort.StopBits = System.IO.Ports.StopBits.One; }
+            else if (Properties.Settings.Default.StopBits == 1.5) { serialPort.StopBits = System.IO.Ports.StopBits.OnePointFive; }
+            else if (Properties.Settings.Default.StopBits == 2) { serialPort.StopBits = System.IO.Ports.StopBits.Two; }
+            //neither are serial port parity objects.
+            if (Properties.Settings.Default.Parity == "None") { serialPort.Parity = System.IO.Ports.Parity.None; }
+            else if (Properties.Settings.Default.Parity == "Odd") { serialPort.Parity = System.IO.Ports.Parity.Odd; }
+            else if (Properties.Settings.Default.Parity == "Even") { serialPort.Parity = System.IO.Ports.Parity.Even; }
+            else if (Properties.Settings.Default.Parity == "Mark") { serialPort.Parity = System.IO.Ports.Parity.Mark; }
+            else if (Properties.Settings.Default.Parity == "Space") { serialPort.Parity = System.IO.Ports.Parity.Space; }
+
+            //the rest are very simple.
+            serialPort.DataBits = Properties.Settings.Default.DataBits;
+            serialPort.RtsEnable = Properties.Settings.Default.RTS;
+            serialPort.DtrEnable = Properties.Settings.Default.DTR;
         }
     }
     public static class ISynchronizeInvokeExtensions

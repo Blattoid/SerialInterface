@@ -1,0 +1,10 @@
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\bin\Debug\SerialInterface.exe.config
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\bin\Debug\SerialInterface.exe
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\bin\Debug\SerialInterface.pdb
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.Properties.Resources.resources
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.csproj.GenerateResource.Cache
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.exe
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.pdb
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.MainWindow.resources
+C:\Users\Daniel\Source\Repos\SerialInterface\SerialInterface\obj\Debug\SerialInterface.SettingsWindow.resources

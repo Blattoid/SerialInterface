@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.serialInput = new System.Windows.Forms.TextBox();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.sendButton = new System.Windows.Forms.Button();
@@ -143,6 +144,7 @@
             this.Controls.Add(this.COMList);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.serialInput);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(370, 200);
             this.Name = "MainWindow";
             this.Text = "Serial Interface";
