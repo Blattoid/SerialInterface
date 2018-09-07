@@ -12,6 +12,7 @@ namespace SerialInterface
         {
             //runs on startup
             InitializeComponent();
+            this.Icon = Properties.Resources.icon; //set icon
         }
 
         private void Window_FormClosed(object sender, FormClosedEventArgs e)
@@ -65,6 +66,8 @@ namespace SerialInterface
             COMList.Items.Clear();
             //use System.IO.Ports.SerialPort.GetPortNames() to get a list of all the avaliable ports.
             string[] comPorts = System.IO.Ports.SerialPort.GetPortNames();
+            //sort the array
+            Array.Sort(comPorts);
             //for every port, add it to the list of options.
             foreach (string port in comPorts)
             {
